@@ -19,7 +19,7 @@
    sleep 10;
    
    #Install font required for creating thumbnail
-   sudo apt-get install msttcorefonts;
+   sudo apt-get -y install --force-yes msttcorefonts;
    
    #chnage permissions
    sudo chmod -R 777 /var/www/html ;

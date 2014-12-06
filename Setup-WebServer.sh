@@ -21,7 +21,7 @@
    #Get required files
    git clone https://github.com/Pawarsnehal23/IITC.git
    
-   mv /IITC/composer.json composer.json
+   mv /IITC/composer.json /composer.json
    
    # Get composer
    curl -sS https://getcomposer.org/installer | sudo php

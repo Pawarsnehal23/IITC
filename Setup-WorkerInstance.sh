@@ -7,6 +7,9 @@
    sudo apt-get -y update 
    sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql  wget
    
+   #Install Git	
+   sudo apt-get install git
+   
    #Install GD 
    sudo apt-get install php5-gd
    

@@ -31,10 +31,7 @@
 			$RDSRegion = $_POST["rdsRegion"];
 			$snsTopicARN=$_POST["snsTopicARN"];
 			
-			//Store details in this bucket
-			$bucket = 'itmo544spawar1a20264861finaldbdetailsLatest';
-	        $key ='MySqlDbDetails';
-			 
+			
 			//sames Values used while launching DB instance
 			$userName = 'Administrator';
 			$password = 'Administrator';
@@ -75,7 +72,10 @@
 	         echo '</br>Storing database details to s3';
 			 $s3ClientObject = Aws\S3\S3Client::factory();
 			 
-			
+			 //Store details in this bucket
+			 $bucket = 'itmo544spawar1a20264861finaldbdetailsLatest';
+	         $key ='MySqlDbDetails';
+			 
 			 if ($s3ClientObject->doesBucketExist($bucket))
 			 {
 			    // Delete the objects in the bucket before attempting to delete

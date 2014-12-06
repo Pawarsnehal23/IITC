@@ -11,7 +11,7 @@
 	CREATE_DB_INSTANCE=$(aws rds create-db-instance  --db-name itmo544a20264861ImageProcessingDb --db-instance-identifier itmo544a20264861ImgaeProcessingIIF --allocated-storage 5 --db-instance-class db.t2.micro --engine MySQL --master-username Administrator --master-user-password Administrator);
    
     echo -e "\nFinished creating Db instance.Sleeping 600 seconds.."
-	for i in {0..600}; do echo -ne '.'; sleep 1;done
+	for i in {0..1000}; do echo -ne '.'; sleep 1;done
 	
 	#Create Read Replica
 	echo -e '\nCreating Read replica..'	

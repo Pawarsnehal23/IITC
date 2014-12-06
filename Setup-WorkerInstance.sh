@@ -7,7 +7,7 @@
    sudo apt-get install git ;
    
    #Install GD 
-   sudo apt-get install php5-gd wget;
+   sudo aptitude install php5-gd ;
    
    sleep 10;
    
@@ -33,10 +33,7 @@
    curl -sS https://getcomposer.org/installer | sudo php
    sudo php composer.phar install
    
-    #Get Code files from Github account
-    #Get required files
-    git clone https://github.com/Pawarsnehal23/IITC.git
-     
+        
    # Move file to www 
    mv /vendor /var/www/html
    mv /IITC/Worker.php /var/www/html

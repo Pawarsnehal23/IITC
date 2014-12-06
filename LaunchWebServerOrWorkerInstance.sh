@@ -7,14 +7,14 @@
  else
  
     #launch asked database
-    echo 'Creating Database..'	
+    echo '\nCreating Database..'	
 	CREATE_DB_INSTANCE=$(aws rds create-db-instance  --db-name itmo544a20264861ImageProcessingDb --db-instance-identifier itmo544a20264861ImgaeProcessingIIF --allocated-storage 5 --db-instance-class db.t2.micro --engine MySQL --master-username Administrator --master-user-password Administrator);
    
-    echo -e "\nFinished creating Db instance.Sleeping 60 seconds.."
-	for i in {0..60}; do echo -ne '.'; sleep 1;done
+    echo -e "\nFinished creating Db instance.Sleeping 10 seconds.."
+	for i in {0..600}; do echo -ne '.'; sleep 1;done
 	
 	#Create Read Replica
-	echo 'Creating Read replica..'	
+	echo '\nCreating Read replica..'	
 	READ_REPLICA=$(aws rds create-db-instance-read-replica  --db-instance-identifier itmo544a20264861ImageProcessingReadIIF --source-db-instance-identifier itmo544a20264861ImgaeProcessingIIF);
 	
 	echo -e "\nFinished creating Read replica for Db instance.Sleeping 60 seconds.."

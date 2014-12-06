@@ -13,6 +13,9 @@
    sudo apt-get -y update 
    sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql  wget
 
+    #Install Git	
+   sudo apt-get install git
+   
    sudo sed  -i     '/;mysqli.allow_local_infile = On/c\mysqli.allow_local_infile = On' /etc/php5/apache2/php.ini
    sudo /etc/init.d/apache2 restart
    

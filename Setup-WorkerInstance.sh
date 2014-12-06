@@ -9,9 +9,13 @@
    #Install GD 
    sudo apt-get install php5-gd wget
    
+   sleep 10;
+   
    #Enable Mysqli
    sudo sed  -i  '/;mysqli.allow_local_infile = On/c\mysqli.allow_local_infile = On' /etc/php5/apache2/php.ini
    sudo /etc/init.d/apache2 restart
+   
+   sleep 10;
    
    #Install font required for creating thumbnail
    sudo apt-get install msttcorefonts

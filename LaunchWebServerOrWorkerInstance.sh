@@ -5,6 +5,38 @@
     then 
     echo "This script needs 7 arguments/variables to run;  client-token , image-id , keypair ,security group , set up file path ,number of instances , IAM role "
  else
+ 
+    #launch asked database
+    echo 'Creating Database..'	
+	CREATE_DB_INSTANCE=$(aws rds create-db-instance  --db-name itmo544a20264861ImageProcessingDb --db-instance-identifier itmo544a20264861ImgaeProcessingIIF --allocated-storage 5 --db-instance-class db.t2.micro --engine MySQL --master-username Administrator --master-user-password Administrator);
+   
+    echo -e "\nFinished creating Db instance.Sleeping 600 seconds.."
+	for i in {0..600}; do echo -ne '.'; sleep 1;done
+	
+	DB_ENDPOINT=$(aws rds describe-db-instances --db-instance-identifier itmo544a20264861ImgaeProcessingIIF --output=text | grep ENDPOINT | awk {'print $2'});
+	
+	echo "\nDB instance End point is - " $DB_ENDPOINT ;
+	
+	#Create Read Replica
+	echo 'Creating Read replica..'	
+	READ_REPLICA=$(aws rds create-db-instance-read-replica  --db-instance-identifier itmo544a20264861ImageProcessingReadIIF --source-db-instance-identifier itmo544a20264861ImgaeProcessingIIF);
+	
+	echo -e "\nFinished creating Read replica for Db instance.Sleeping 600 seconds.."
+	for i in {0..600}; do echo -ne '.'; sleep 1;done
+	
+	READ_REPLICA_ENDPOINT=$(aws rds describe-db-instances --db-instance-identifier itmo544a20264861ImageProcessingReadIIF --output=text | grep ENDPOINT | awk {'print $2'});
+	
+	echo "\nDB instance End point is - " $READ_REPLICA_ENDPOINT;
+	
+	#Create Queue 
+	QUEUE_URL=$(aws sqs create-queue --queue-name itmo544a20264861ImgaeProcessingQueue --output=text);
+	echo '\nFinished creating Queue.Sleeping 60 seconds..Queue Name is -' $QUEUE_URL;
+		
+	#Create Topic
+	TOPIC_ARN=$(aws sns create-topic --name itmo544a20264861ImgaeProcessingTopic --output=text);
+	echo '\nFinished creating topic.Topic ARN is -' $TOPIC_ARN;
+	
+		
 	#Step 1: Create a VPC with a /28 cidr block (see the aws example) - assign the vpc-id to a variable  you can awk column $6 on the --output=text to get the value
 	echo 'Creating VPC..'
 	VPCID=(`aws ec2 create-vpc  --cidr-block 10.0.0.0/28 --output=text | awk {'print $6'}`);

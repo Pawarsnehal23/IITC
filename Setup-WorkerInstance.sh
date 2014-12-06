@@ -4,17 +4,17 @@
    sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql  wget
    
    #Install Git	
-   sudo apt-get install git
+   sudo apt-get install git 
    
    #Install GD 
-   sudo apt-get install php5-gd
-   
-   #Install font required for creating thumbnail
-   sudo apt-get install msttcorefonts
+   sudo apt-get install php5-gd wget
    
    #Enable Mysqli
    sudo sed  -i  '/;mysqli.allow_local_infile = On/c\mysqli.allow_local_infile = On' /etc/php5/apache2/php.ini
    sudo /etc/init.d/apache2 restart
+   
+   #Install font required for creating thumbnail
+   sudo apt-get install msttcorefonts
    
    #chnage permissions
    sudo chmod -R 777 /var/www/html 

@@ -4,10 +4,10 @@
    sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql  wget;
    
    #Install Git	
-   sudo apt-get install git ;
+   sudo apt-get -y install --force-yes git ;
    
    #Install GD 
-   sudo aptitude install php5-gd ;
+   sudo aptitude -y install --force-yes php5-gd ;
    
    sleep 10;
    

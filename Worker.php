@@ -33,7 +33,8 @@
 	
 	        // Check connection to read replica
 			$connectionReadReplica = mysqli_connect($servernameReadReplica, $username, $password);
-						
+			 $connectionForWrite=null;
+			 
 			//check if error any
 			if (mysqli_connect_errno())
 				{

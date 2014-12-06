@@ -29,6 +29,7 @@
    
      
    # Move file to www 
+   mv  /vendor /var/www/html
    mv /IITC/ConfigureDetails.php /var/www/html
    mv /IITC/ConfigureITM0544ImageProcessingSystem.php /var/www/html
    mv /IITC/HomePage.php /var/www/html

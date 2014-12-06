@@ -45,10 +45,8 @@
 			$sqsQueueName='itmo544a20264861ImgaeProcessingQueue';
 			
 			//Get database end point
-			$RDSClient = Aws\Rds\RdsClient::factory(array('region'  => $RDSRegion ,
-				  ));
-			 $rdsResult = $RDSClient->describeDBInstances(array(
-			'DBInstanceIdentifier' => $dbInstanceIdentifier,));
+			$RDSClient = Aws\Rds\RdsClient::factory(array('region'  => $RDSRegion ,));
+			 $rdsResult = $RDSClient->describeDBInstances(array('DBInstanceIdentifier' => $dbInstanceIdentifier,));
 			
 			//Find out end point of database
 						foreach ($rdsResult as $key => $value) 
@@ -98,7 +96,7 @@
 			  // Wait until the bucket is created
               $s3ClientObject->waitUntilBucketExists(array('Bucket' => $bucket));
 			 
-	         $currentDbDetails=$servername.','.$userName.','.$password.','. $database.','.$tableName.','.$sqsQueueURL.','.$snsTopicARN.','.$queueRegion.','.$snsRegion.','.$RDSRegion,','.$dbReadReplicaIdentifier;
+	         $currentDbDetails=$servername.','.$userName.','.$password.','. $database.','.$tableName.','.$sqsQueueURL.','.$snsTopicARN.','.$queueRegion.','.$snsRegion.','.$RDSRegion.','.$dbReadReplicaIdentifier;
 	         
 	         $result = $s3ClientObject->putObject(array(
                         'Bucket' => $bucket,
@@ -110,7 +108,7 @@
 			echo '</br>Finished storing database details to s3';
 			 
 			// Check connection
-			$connection = mysqli_connect($servername, $userName, $password);
+			$WriteConnection = mysqli_connect($servername, $userName, $password);
 					
 			//check if error any
 			if (mysqli_connect_errno())
@@ -119,7 +117,7 @@
 				}
 				
 			// Create Database with name entered by user
-			$db_found = mysqli_select_db($connection,$database);
+			$db_found = mysqli_select_db($WriteConnection,$database);
 					
 			//if database created
 			if($db_found)
@@ -130,7 +128,7 @@
 					//check if table already exists
 					$dropStatement ="drop table {$tableName}";
 					//drop table
-					mysqli_query($connection,$dropStatement);
+					mysqli_query($WriteConnection,$dropStatement);
 					
 					 //Re-create table		
 					 $createTblSql ="CREATE TABLE {$tableName}  (
@@ -142,7 +140,7 @@
 							 userName varchar(100) NOT NULL,
 							 userPhone varchar(100) NOT NULL
 					   )";
-					 mysqli_query($connection,$createTblSql);  
+					 mysqli_query($WriteConnection,$createTblSql);  
 					 echo "</br>{$tableName} table created successfully..!</br>";
 			}
 			else

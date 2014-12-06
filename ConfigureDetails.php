@@ -40,9 +40,10 @@
 			$dbInstanceIdentifier='itmo544a20264861ImgaeProcessingIIF';
 			$dbReadReplicaIdentifier='itmo544a20264861ImageProcessingReadIIF';
 			$sqsQueueName='itmo544a20264861ImgaeProcessingQueue';
+			$ReadReplicaServerName='';
 			
 			//Get database end point
-			$RDSClient = Aws\Rds\RdsClient::factory(array('region'  => $RDSRegion ,));
+			 $RDSClient = Aws\Rds\RdsClient::factory(array('region'  => $RDSRegion ,));
 			 $rdsResult = $RDSClient->describeDBInstances(array('DBInstanceIdentifier' => $dbInstanceIdentifier,));
 			
 			//Find out end point of database
@@ -55,6 +56,21 @@
 							   {
 								  echo '</br>RDS URL is -' .$value2["Endpoint"]["Address"];
 								  $servername =$value2["Endpoint"]["Address"];
+							   }
+						   }
+						} 
+			 $rdsResultForReadReplica = $RDSClient->describeDBInstances(array('DBInstanceIdentifier' => $dbReadReplicaIdentifier,));
+			
+			//Find out end point of database
+						foreach ($rdsResultForReadReplica as $key => $value) 
+						{
+						   echo '</br>';
+						   if($key=="DBInstances")
+						   { 
+						     foreach ($value as $key2 => $value2) 
+							   {
+								  echo '</br>RDS URL is -' .$value2["Endpoint"]["Address"];
+								  $ReadReplicaServerName =$value2["Endpoint"]["Address"];
 							   }
 						   }
 						} 
@@ -96,7 +112,7 @@
 			  // Wait until the bucket is created
               $s3ClientObject->waitUntilBucketExists(array('Bucket' => $bucket));
 			 
-	         $currentDbDetails=$servername.','.$userName.','.$password.','. $database.','.$tableName.','.$sqsQueueURL.','.$snsTopicARN.','.$queueRegion.','.$snsRegion.','.$RDSRegion.','.$dbReadReplicaIdentifier;
+	         $currentDbDetails=$servername.','.$userName.','.$password.','. $database.','.$tableName.','.$sqsQueueURL.','.$snsTopicARN.','.$queueRegion.','.$snsRegion.','.$RDSRegion.','.$ReadReplicaServerName;
 	         
 	         $result = $s3ClientObject->putObject(array(
                         'Bucket' => $bucket,

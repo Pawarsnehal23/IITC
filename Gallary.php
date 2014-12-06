@@ -45,14 +45,14 @@
 				 
 				
 				 $myDbDetailsArray = explode(',', $resultDataBaseDetails['Body']);
-				 $servername=$myDbDetailsArray[0];
+				 $servernameOfReadReplica=$myDbDetailsArray[10];
 				 $username = $myDbDetailsArray[1];
 				 $password = $myDbDetailsArray[2];
 				 $database= $myDbDetailsArray[3];
 				 $tableName=$myDbDetailsArray[4];
 				 
 				 // Check connection
-				$connection = mysqli_connect($servername, $username, $password);
+				$connectionOfReadReplica = mysqli_connect($servernameOfReadReplica, $username, $password);
 						
 				//check if error any
 				if (mysqli_connect_errno())
@@ -60,13 +60,13 @@
 					  echo "Failed to connect to server ";
 					}
 					
-				$db_found = mysqli_select_db($connection,$database);
+				$db_found = mysqli_select_db($connectionOfReadReplica,$database);
 				echo "</br>DB found".$db_found ;
 				
 				$selectTblSql ="select S3BucketName,ImageS3Key,ImageThumbnailS3Key,userEmail,userName,userPhone from {$tableName}
 				 where userEmail=\"{$userEmailID}\"";
 				 
-				$mysqlSelectResult = mysqli_query($connection,$selectTblSql);
+				$mysqlSelectResult = mysqli_query($connectionOfReadReplica,$selectTblSql);
 				
 				 if ($mysqlSelectResult) 
 				 {
@@ -134,7 +134,7 @@
 		   }
 		  else
 		  {
-		    echo ' <form  style="background-color:#31B0D4;margin-top:100px;border:solid;black;1px;padding:20px;" enctype="multipart/form-data" action="ViewAllJobs.php" method="POST">
+		    echo ' <form  style="background-color:#31B0D4;margin-top:100px;border:solid;black;1px;padding:20px;" enctype="multipart/form-data" action="Gallary.php" method="POST">
 			             <label>Enter Your email Address<label> 
 			             <input style="color:black;" type="text" name="userEmail" style="width:400px;"></text>
 

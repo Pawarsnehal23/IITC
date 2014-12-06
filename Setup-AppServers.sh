@@ -22,9 +22,6 @@
    #chnage permissions
    sudo chmod -R 777 /var/www/html 
   
-   # Get files from web server to application server
-   wget http://ec2-54-148-142-162.us-west-2.compute.amazonaws.com/composer.json
-   
    # Get composer
    curl -sS https://getcomposer.org/installer | sudo php
    sudo php composer.phar install

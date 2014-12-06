@@ -1,4 +1,0 @@
-IITC
-====
-
-IITC code

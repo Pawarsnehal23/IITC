@@ -22,14 +22,15 @@
    #chnage permissions
    sudo chmod -R 777 /var/www/html 
   
+   #Get Code files from Github account
+   git clone https://github.com/Pawarsnehal23/IITC.git
+   
+   mv /IITC/composer.json /composer.json
+   
    # Get composer
    curl -sS https://getcomposer.org/installer | sudo php
    sudo php composer.phar install
    
-   #Get Code files from Github account
-   #Get required files
-   git clone https://github.com/Pawarsnehal23/IITC.git
-
    #Make directory to store uploaded files
    mkdir /var/www/uploads
    sudo chmod -R 777 /var/www/uploads

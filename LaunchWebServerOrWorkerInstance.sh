@@ -1,9 +1,9 @@
  #! /bin/sh
  clear
 
- if [ $# != 8 ]
+ if [ $# != 7 ]
     then 
-    echo "This script needs 8 arguments/variables to run;  KEYPAIR, CLIENT-TOKENS, NUMBER OF INSTANCES, and SECURITY-GROUP-NAME"
+    echo "This script needs 7 arguments/variables to run;  client-token , image-id , keypair ,security group , set up file path ,number of instances , IAM role "
  else
 	#Step 1: Create a VPC with a /28 cidr block (see the aws example) - assign the vpc-id to a variable  you can awk column $6 on the --output=text to get the value
 	echo 'Creating VPC..'
@@ -53,7 +53,7 @@
 	aws ec2 associate-route-table --route-table-id $ROUTETABLEID --subnet-id $SUBNETID
 
 	echo "Launching instances in AWS ";
-	QUERY_RESULTS=$(aws ec2 run-instances --block-device-mappings "[{\"DeviceName\": \"/dev/sdh\",\"Ebs\":{\"VolumeSize\":10}}]" --iam-instance-profile Name=$8 --image-id $2 --count $7 --instance-type t1.micro --security-group-ids $GRPID --key-name $3 --user-data file:$5 --client-token $1  --output text --subnet-id $SUBNETID);
+	QUERY_RESULTS=$(aws ec2 run-instances --block-device-mappings "[{\"DeviceName\": \"/dev/sdh\",\"Ebs\":{\"VolumeSize\":10}}]" --iam-instance-profile Name=$7 --image-id $2 --count $6 --instance-type t1.micro --security-group-ids $GRPID --key-name $3 --user-data file:$5 --client-token $1  --output text --subnet-id $SUBNETID);
 	echo $QUERY_RESULTS ;
 	
 	echo -e "\nFinished launching EC2 Instances and sleeping 60 seconds"

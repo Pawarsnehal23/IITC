@@ -40,3 +40,5 @@
    #Launch worker 
   php /var/www/html/Worker.php &
   exit 0
+  
+  

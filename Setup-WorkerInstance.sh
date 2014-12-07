@@ -1,5 +1,5 @@
   #!/bin/bash 
-
+  
   sudo apt-get -y update  
   sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql php5-gd 
      
@@ -21,8 +21,6 @@
   curl -sS https://getcomposer.org/installer | sudo php 
   sudo php composer.phar install 
    
-  sudo apt-get -y install --force-yes msttcorefonts
-  
   # Move file to www  
   mv /vendor /var/www/html 
   mv /IITC/Worker.php /var/www/html 

@@ -38,4 +38,4 @@
    mv  /vendor /var/www/html
    
    #Launch worker 
-  php /var/www/html/Worker.php && exit 0
+   php /var/www/html/Worker.php && exit 0

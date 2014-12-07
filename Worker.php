@@ -224,7 +224,7 @@
 				   
 				$black = imagecolorallocate($nm, 255, 255, 255);
 				// Path to our ttf font file
-				$font_file = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf';
+				$font_file = '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf';
 				//Write  out logo to image
 				imagefttext($nm, 7, 0, 0, 30, $black,$font_file,  'ITMO544');
 			   

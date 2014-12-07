@@ -114,7 +114,7 @@
 					}
 					
 				$db_found = mysqli_select_db($connection,$database);
-				echo "DB found".$db_found ;
+				echo "</br>DB found - ".$db_found ;
 				
 				$insertTblSql ="insert into {$tableName} (S3BucketName,ImageS3Key,ImageThumbnailS3Key,userEmail,userName,userPhone) values (\"{$bucket}\",\"{$key}\",\"NotAvailable\",\"{$_SESSSION['userEmail']}\",\"{$_SESSSION['userName']}\",\"{$_SESSSION['userPhone']}\");";
 				
@@ -139,9 +139,7 @@
 					'MessageBody' => $lastInserID,
 			    ));
 
-				echo 	$sqsSendMsgResult;
-
-                echo 'Data uploaded to AWS queue.';				
+                echo '</br>Data uploaded to AWS queue.';				
 			    //Drop MySQL connection
 			    mysqli_close($connection);
 		}

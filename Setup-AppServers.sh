@@ -38,4 +38,6 @@
    # Move file to www 
    mv  /IITC/Index.php /var/www/html
    mv  /IITC/Result.php /var/www/html
+   mv  /IITC/HomePageAppServer.php /var/www/html
+   mv /IITC/Gallary.php /var/www/html
    mv  /vendor /var/www/html

@@ -136,7 +136,7 @@
 		  {
 		    echo ' <form  style="background-color:#31B0D4;margin-top:100px;border:solid;black;1px;padding:20px;" enctype="multipart/form-data" action="Gallary.php" method="POST">
 			             <label>Enter Your email Address<label> 
-			             <input style="color:black;" type="text" name="userEmail" style="width:600px;"></text>
+			             <input style="color:black;" type="text" name="userEmail" style="width:800px;"></text>
 
    			             </br><input style="color:black;"  type="submit"></input>
 			    </form>';

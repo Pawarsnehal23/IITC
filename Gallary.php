@@ -81,6 +81,7 @@
 					 $UrlToImageThumbnail="";
 					 while($row!=null)
 					  {
+					     $UrlToImage="";
 					     //Get object URL 
 						 $bucketAddress=$row["S3BucketName"];
 						 if ($s3ClientObject->doesBucketExist($bucketAddress))

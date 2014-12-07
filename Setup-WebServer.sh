@@ -34,4 +34,5 @@
    mv /IITC/ConfigureITM0544ImageProcessingSystem.php /var/www/html
    mv /IITC/HomePage.php /var/www/html
    mv /IITC/SubscribeToSNS.php /var/www/html
-   mv /IITC/Gallary.php /var/www/html
+   
+  

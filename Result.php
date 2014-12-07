@@ -92,7 +92,6 @@
 					'Key'    => $databaseKeyName
 				 ));
 				 
-				 echo $resultDataBaseDetails['Body'];
 				 $myDbDetailsArray = explode(',', $resultDataBaseDetails['Body']);
 				 $servernameOfWriteInstance=$myDbDetailsArray[0];
 				 $username = $myDbDetailsArray[1];
@@ -102,8 +101,7 @@
 				 $sqsQueueURL=$myDbDetailsArray[5];
 			     $snsTopicARN=$myDbDetailsArray[6];
 				 $queueRegion=$myDbDetailsArray[7];
-				 echo $myDbDetailsArray;
-									 
+				 					 
 				// Check connection
 				$connection = mysqli_connect($servernameOfWriteInstance, $username, $password);
 						
@@ -126,7 +124,7 @@
 				echo " </br> Data inserted into table {$tableName} </br>";
 				
 				$lastInserID = $mysqliObject->insert_id;
-				echo '</br> last insert ID is -'.$lastInserID;
+				echo '</br> last database insert ID is -'.$lastInserID;
 								
 				//SQS operations start
 			    $sqsClientFactory = Aws\Sqs\SqsClient::factory(array('region'  => $queueRegion));

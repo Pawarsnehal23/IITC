@@ -161,13 +161,17 @@
 					
 							echo "<br/>Consumed Message has been deleted!<br/>";
 					   }
+					   
+					   //Drop MySQL all sql connections
+					   mysqli_close($connectionForWrite);
+					   
 				}//end of if validation
 			}
 			
 			
 		  //Drop MySQL all sql connections
 		  mysqli_close($connectionReadReplica);
-		  mysqli_close($connectionForWrite);
+		  
 		}
 		
 	     //Function to create thumbnail
@@ -220,7 +224,7 @@
 				   
 				$black = imagecolorallocate($nm, 255, 255, 255);
 				// Path to our ttf font file
-				$font_file = '/usr/share/fonts/truetype/ubuntu-font-family/Ubuntu-B.ttf';
+				$font_file = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf';
 				//Write  out logo to image
 				imagefttext($nm, 7, 0, 0, 30, $black,$font_file,  'ITMO544');
 			   

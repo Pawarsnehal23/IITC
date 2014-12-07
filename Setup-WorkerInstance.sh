@@ -1,40 +1,37 @@
-#!/bin/bash 
-  sudo apt-get -y update
-  sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql
-
-  #restart apache
-  sudo /etc/init.d/apache2 restart
-
-  #install GD
-  sudo apt-get -y install --force-yes php5-gd
-
-  #Enable Mysqli
-  sudo sed  -i  '/;mysqli.allow_local_infile = On/c\mysqli.allow_local_infile = On' /etc/php5/apache2/php.ini
-  sudo sed  -i  '/;extension=php_gd2.dll/c\extension=php_gd2.dll' /etc/php5/apache2/php.ini
-
-  #restart apache
-  sudo /etc/init.d/apache2 restart
-
-  #Install font required for creating thumbnail
-  sudo apt-get install msttcorefonts
-
-  #chnage permissions 
-  sudo chmod -R 777 /var/www/html
-
-  #Get Code files from Github account
-  git clone https://github.com/Pawarsnehal23/IITC.git
-
-  mv /IITC/composer.json /composer.json
+#!/bin/bash
   
-  # Get composer
-  curl -sS https://getcomposer.org/installer | sudo php
-  sudo php composer.phar install
+   # To mount device
+   mkfs -t ext4 /dev/sdh
+   mkdir /mnt/disk1
+   mount /dev/sdh /mnt/disk1
+   echo "/dev/sdh /mnt/disk1 ext4 defaults,nofail 0 0" >> /etc/fstab
+   
+   sudo apt-get -y update 
+   sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql  wget
 
-  # Move file to www  
-  mv /vendor /var/www/html
-  mv /IITC/Worker.php /var/www/html
-
-  #Launch worker 
+   sudo sed  -i     '/;mysqli.allow_local_infile = On/c\mysqli.allow_local_infile = On' /etc/php5/apache2/php.ini
+   sudo /etc/init.d/apache2 restart
+   
+   #chnage permissions
+   sudo chmod -R 777 /var/www/html 
+  
+   #Get Code files from Github account
+   git clone https://github.com/Pawarsnehal23/IITC.git
+   
+   mv /IITC/composer.json /composer.json
+   
+   # Get composer
+   curl -sS https://getcomposer.org/installer | sudo php
+   sudo php composer.phar install
+   
+   #Make directory to store uploaded files
+   mkdir /var/www/uploads
+   sudo chmod -R 777 /var/www/uploads
+  
+   # Move file to www 
+   mv /IITC/Worker.php /var/www/html
+   mv  /vendor /var/www/html
+   
+   #Launch worker 
   php /var/www/html/Worker.php &
   exit 0
-

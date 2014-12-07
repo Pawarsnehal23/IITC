@@ -5,10 +5,7 @@
    sudo apt-get install unzip
    
    sudo apt-get -y update 
-   sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql  wget
-   
-   #Install GD 
-   sudo apt-get install php5-gd
+   sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql  wget php5-gd
    
    #Install font required for creating thumbnail
    sudo apt-get install msttcorefonts

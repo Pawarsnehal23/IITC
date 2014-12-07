@@ -31,13 +31,8 @@
 	      </br><a href="CreateQueue.php">Create Queue </a>
 		  </br><a href="CreateTopic.php">Create topic</a>-->
 		  </br><a href="ConfigureITM0544ImageProcessingSystem.php">Feed RDS , queue and topic information to system</a>
+		  </br><a href="SubscribeToSNS.php">Subscribe Users To notification</a> 
 	  </div>
-	   
-	    <h3>User Section</h3> 
-	    <div style="border:1px solid black;width:600px;margin:30px;padding:30px;">
-	      </br><a href="SubscribeToSNS.php">Subscribe To notification</a> 
-		  </br><a href="Gallary.php">View my jobs</a>
-	    </div>
 	   
   </body>
 

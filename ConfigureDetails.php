@@ -69,7 +69,7 @@
 						   { 
 						     foreach ($value as $key2 => $value2) 
 							   {
-								  echo '</br>RDS URL is -' .$value2["Endpoint"]["Address"];
+								  echo '</br>RDS URL is for read replica is -' .$value2["Endpoint"]["Address"].'</br>';
 								  $ReadReplicaServerName =$value2["Endpoint"]["Address"];
 							   }
 						   }

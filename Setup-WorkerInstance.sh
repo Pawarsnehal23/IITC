@@ -2,10 +2,7 @@
   
    sudo apt-get -y update 
    sudo apt-get -y install --force-yes apache2 wget php5 php5-curl curl git php5-mysql php5-gd
-   
-   #Install font required for creating thumbnail
-   sudo apt-get -y install msttcorefonts
-   
+      
    #Enable Mysqli
    sudo sed  -i  '/;mysqli.allow_local_infile = On/c\mysqli.allow_local_infile = On' /etc/php5/apache2/php.ini
    sudo sed  -i  '/;extension=php_gd2.dll/c\extension=php_gd2.dll' /etc/php5/apache2/php.ini
